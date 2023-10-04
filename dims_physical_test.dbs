@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql-MDevNCDE1" id="Project-26f7" database="MySql" >
+	<schema name="dims" >
+		<table name="acquirer_card_brand_mapping" row_count="9" spec="" >
+			<column name="acquirer_card_brand_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="acquirer_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="card_brand_code" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_acquirer_card_brand_mapping" unique="PRIMARY_KEY" >
+				<column name="acquirer_card_brand_id" />
+			</index>
+			<index name="fk_crd_brnd_cde_crd_brnd_mstr_33" unique="NORMAL" >
+				<column name="card_brand_code" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="acquirer_master" row_count="3" spec="" >
+			<column name="acquirer_code" type="VARCHAR" length="8" jt="12" mandatory="y" />
+			<column name="acquirer_desc" type="VARCHAR" length="51" jt="12" mandatory="y" />
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_acquirer_master" unique="PRIMARY_KEY" >
+				<column name="acquirer_code" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="action_types" row_count="5" spec="" >
+			<column name="action_type_code" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<column name="action_type_description" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_action_types" unique="PRIMARY_KEY" >
+				<column name="action_type_code" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="activated_stage_detail" row_count="0" spec="" >
+			<column name="activated_stage_detail_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="case_stage_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="activated_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="activated_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="activated_comment" type="VARCHAR" length="160" jt="12" mandatory="y" />
+			<column name="deactivated_by" type="VARCHAR" length="20" jt="12" />
+			<column name="deactivated_timestamp" type="TIMESTAMP" length="6" jt="93" />
+			<column name="is_latest_ind" type="BOOLEAN" length="1" jt="16" mandatory="y" />
+			<index name="pk_activated_stage_detail" unique="PRIMARY_KEY" >
+				<column name="activated_stage_detail_id" />
+			</index>
+			<index name="fk_case_stage_id_case_stage_detail14" unique="NORMAL" >
+				<column name="case_stage_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="actual_field_name_master" row_count="53" spec="" >
+			<column name="actual_field_name_id" type="VARCHAR" length="15" jt="12" mandatory="y" />
+			<column name="actual_name" type="VARCHAR" length="100" jt="12" />
+			<column name="display_name" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="actual_table_name" type="VARCHAR" length="50" jt="12" />
+			<column name="is_sort_ind" type="VARCHAR" length="1" jt="12" />
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_actual_field_name_master" unique="PRIMARY_KEY" >
+				<column name="actual_field_name_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_acknowledgement_detail" row_count="26" spec="" >
+			<column name="amex_acknowledgement_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_detail_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="card_brand_code" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="region_code" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="acquirer_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="file_name" type="VARCHAR" length="150" jt="12" mandatory="y" />
+			<column name="dtl_ind" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="message_type" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="message_description" type="VARCHAR" length="3000" jt="12" mandatory="y" />
+			<column name="pubsub_success_indicator" type="VARCHAR" length="1" jt="12" mandatory="y" >
+				<defo><![CDATA['N']]></defo>
+			</column>
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_acknowledgement_detail" unique="PRIMARY_KEY" >
+				<column name="amex_acknowledgement_id" />
+			</index>
+			<index name="fk_amex_header_detail_id_amex_header_detail_05" unique="NORMAL" >
+				<column name="amex_header_detail_id" />
+			</index>
+			<index name="fk_card_brand_code_card_brand_master_30" unique="NORMAL" >
+				<column name="card_brand_code" />
+			</index>
+			<index name="fk_region_code_region_master_30" unique="NORMAL" >
+				<column name="region_code" />
+			</index>
+			<fk name="fk_amex_header_detail_id_amex_header_detail_05" to_schema="dims" to_table="amex_header_detail" options="" >
+				<fk_column name="amex_header_detail_id" pk="amex_header_detail_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_data_file_detail" row_count="599" spec="" >
+			<column name="amex_data_file_detail_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_detail_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="card_brand_code" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="region_code" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="acquirer_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="file_name" type="VARCHAR" length="150" jt="12" mandatory="y" />
+			<column name="dtl_ind" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="message_type" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="case_type" type="VARCHAR" length="6" jt="12" />
+			<column name="masked_card_original_number" type="VARCHAR" length="19" jt="12" />
+			<column name="card_original_global_token" type="VARCHAR" length="150" jt="12" />
+			<column name="card_original_merchant_token" type="VARCHAR" length="150" jt="12" />
+			<column name="masked_card_account_number" type="VARCHAR" length="19" jt="12" />
+			<column name="card_account_global_token" type="VARCHAR" length="150" jt="12" />
+			<column name="card_account_merchant_token" type="VARCHAR" length="150" jt="12" />
+			<column name="masked_card_account_number_19" type="VARCHAR" length="19" jt="12" />
+			<column name="card_account_19_global_token" type="VARCHAR" length="150" jt="12" />
+			<column name="card_account_19_merchant_token" type="VARCHAR" length="150" jt="12" />
+			<column name="acquirer_reference_number" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="response_due_date" type="DATE" jt="91" />
+			<column name="transaction_amount" type="DECIMAL" length="18" decimal="2" jt="3" mandatory="y" />
+			<column name="transaction_currency_code" type="VARCHAR" length="3" jt="12" />
+			<column name="transaction_date" type="DATE" jt="91" />
+			<column name="acquirer_bin_ica" type="VARCHAR" length="10" jt="12" />
+			<column name="issuer_bin_ica" type="VARCHAR" length="10" jt="12" />
+			<column name="reason_code" type="VARCHAR" length="4" jt="12" />
+			<column name="follow_up_reason_code" type="VARCHAR" length="2" jt="12" />
+			<column name="fin_ind" type="VARCHAR" length="1" jt="12" />
+			<column name="adjustment_date" type="DATE" jt="91" />
+			<column name="dispute_amount" type="DECIMAL" length="18" decimal="2" jt="3" mandatory="y" />
+			<column name="dispute_currency_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="foreign_amount" type="DECIMAL" length="18" decimal="2" jt="3" />
+			<column name="foreign_currency" type="VARCHAR" length="4" jt="12" />
+			<column name="member_message_text" type="VARCHAR" length="2000" jt="12" mandatory="y" />
+			<column name="case_number" type="VARCHAR" length="11" jt="12" mandatory="y" />
+			<column name="case_update_type" type="VARCHAR" length="2" jt="12" />
+			<column name="case_update_ind" type="VARCHAR" length="1" jt="12" />
+			<column name="merchant_number" type="VARCHAR" length="15" jt="12" mandatory="y" />
+			<column name="seller_id" type="VARCHAR" length="25" jt="12" />
+			<column name="pubsub_success_indicator" type="VARCHAR" length="1" jt="12" mandatory="y" >
+				<defo><![CDATA['P']]></defo>
+			</column>
+			<column name="processing_status" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA['NEW']]></defo>
+			</column>
+			<column name="is_sdm_case_ind" type="BOOLEAN" length="1" jt="16" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="amex_all_properties" type="JSON" jt="2000" mandatory="y" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_data_file_detail" unique="PRIMARY_KEY" >
+				<column name="amex_data_file_detail_id" />
+			</index>
+			<index name="fk_amex_header_detail_id_amex_header_detail_02" unique="NORMAL" >
+				<column name="amex_header_detail_id" />
+			</index>
+			<index name="fk_card_brand_code_card_brand_master_29" unique="NORMAL" >
+				<column name="card_brand_code" />
+			</index>
+			<index name="fk_region_code_amex_region_master_29" unique="NORMAL" >
+				<column name="region_code" />
+			</index>
+			<fk name="fk_amex_header_detail_id_amex_header_detail_02" to_schema="dims" to_table="amex_header_detail" options="" >
+				<fk_column name="amex_header_detail_id" pk="amex_header_detail_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=778 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_data_file_response" row_count="952" spec="" >
+			<column name="amex_data_file_response_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_response_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="case_stage_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="issuer_sent_response_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="dtl_rec_type" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="fin_ind" type="VARCHAR" length="1" jt="12" />
+			<column name="seq_number" type="VARCHAR" length="2" jt="12" />
+			<column name="cm_num_global_token" type="VARCHAR" length="150" jt="12" />
+			<column name="case_number" type="VARCHAR" length="16" jt="12" mandatory="y" />
+			<column name="refund_am" type="VARCHAR" length="10" jt="12" />
+			<column name="refund_curr_code" type="VARCHAR" length="3" jt="12" />
+			<column name="refund_dec_no" type="VARCHAR" length="2" jt="12" />
+			<column name="response_code" type="VARCHAR" length="10" jt="12" />
+			<column name="response_code_description" type="VARCHAR" length="700" jt="12" />
+			<column name="user_response" type="VARCHAR" length="1500" jt="12" />
+			<column name="se_number" type="VARCHAR" length="10" jt="12" />
+			<column name="response_create_ts" type="VARCHAR" length="26" jt="12" />
+			<column name="mkt_code" type="VARCHAR" length="3" jt="12" />
+			<column name="refund_type_code" type="VARCHAR" length="10" jt="12" />
+			<column name="refund_type_code_desc" type="VARCHAR" length="50" jt="12" />
+			<column name="cm_orig_num_global_token_2" type="VARCHAR" length="150" jt="12" />
+			<column name="current_css_case_number" type="VARCHAR" length="11" jt="12" />
+			<column name="inquiry_case_number" type="VARCHAR" length="7" jt="12" />
+			<column name="action_number" type="VARCHAR" length="2" jt="12" />
+			<column name="previous_action_number" type="VARCHAR" length="2" jt="12" />
+			<column name="resolution_letter_ind" type="VARCHAR" length="1" jt="12" />
+			<column name="from_system" type="VARCHAR" length="1" jt="12" />
+			<column name="reject_to_system" type="VARCHAR" length="2" jt="12" />
+			<column name="dispute_to_system" type="VARCHAR" length="1" jt="12" />
+			<column name="date_of_adjustment" type="VARCHAR" length="8" jt="12" />
+			<column name="date_of_charge" type="VARCHAR" length="8" jt="12" />
+			<column name="amex_id" type="VARCHAR" length="7" jt="12" />
+			<column name="case_type" type="VARCHAR" length="6" jt="12" />
+			<column name="loc_numb" type="VARCHAR" length="15" jt="12" />
+			<column name="reason_code" type="VARCHAR" length="3" jt="12" />
+			<column name="action_resolution_code" type="VARCHAR" length="2" jt="12" />
+			<column name="dollar_amount" type="VARCHAR" length="19" jt="12" />
+			<column name="cb_adjustment_number" type="VARCHAR" length="6" jt="12" />
+			<column name="cb_resolution_adj_number" type="VARCHAR" length="6" jt="12" />
+			<column name="cb_reference_code" type="VARCHAR" length="12" jt="12" />
+			<column name="billed_amount" type="VARCHAR" length="17" jt="12" />
+			<column name="soc_amount" type="VARCHAR" length="17" jt="12" />
+			<column name="soc_invoice_number" type="VARCHAR" length="6" jt="12" />
+			<column name="roc_invoice_number" type="VARCHAR" length="6" jt="12" />
+			<column name="foreign_amt" type="VARCHAR" length="15" jt="12" />
+			<column name="foreign_currency" type="VARCHAR" length="3" jt="12" />
+			<column name="date_action_taken" type="VARCHAR" length="8" jt="12" />
+			<column name="support_sent" type="VARCHAR" length="2" jt="12" mandatory="y" />
+			<column name="support_type_description" type="VARCHAR" length="50" jt="12" />
+			<column name="trans_id" type="VARCHAR" length="50" jt="12" />
+			<column name="acq_ref_number" type="VARCHAR" length="23" jt="12" />
+			<column name="triumph_seq_no" type="VARCHAR" length="2" jt="12" />
+			<column name="seller_id" type="VARCHAR" length="20" jt="12" />
+			<column name="airline_tkt_num" type="VARCHAR" length="20" jt="12" />
+			<column name="al_sequence_number" type="VARCHAR" length="2" jt="12" />
+			<column name="folio_ref" type="VARCHAR" length="18" jt="12" />
+			<column name="merch_order_num" type="VARCHAR" length="10" jt="12" />
+			<column name="merch_order_date" type="VARCHAR" length="8" jt="12" />
+			<column name="canc_num" type="VARCHAR" length="20" jt="12" />
+			<column name="canc_date" type="VARCHAR" length="8" jt="12" />
+			<column name="fincap_tracking_id" type="VARCHAR" length="11" jt="12" />
+			<column name="fincap_file_seq_number" type="VARCHAR" length="6" jt="12" />
+			<column name="fincap_batch_number" type="VARCHAR" length="4" jt="12" />
+			<column name="fincap_batch_invoice_date" type="VARCHAR" length="8" jt="12" />
+			<column name="dispute_code" type="VARCHAR" length="2" jt="12" />
+			<column name="dispute_amount" type="VARCHAR" length="17" jt="12" />
+			<column name="response_explanation" type="VARCHAR" length="255" jt="12" />
+			<column name="triumph_area" type="VARCHAR" length="47" jt="12" />
+			<column name="cm_account_num_exd_glbal_token" type="VARCHAR" length="150" jt="12" />
+			<column name="inquiry_mark" type="VARCHAR" length="1" jt="12" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_data_file_response" unique="PRIMARY_KEY" >
+				<column name="amex_data_file_response_id" />
+			</index>
+			<index name="fk_amex_header_response_id_amex_header_response_01" unique="NORMAL" >
+				<column name="amex_header_response_id" />
+			</index>
+			<index name="fk_case_stage_id_case_stage_detail_12" unique="NORMAL" >
+				<column name="case_stage_id" />
+			</index>
+			<index name="fk_issuer_sent_response_id_issuer_sent_response_detail_12" unique="NORMAL" >
+				<column name="issuer_sent_response_id" />
+			</index>
+			<fk name="fk_amex_header_response_id_amex_header_response_01" to_schema="dims" to_table="amex_header_response" options="" >
+				<fk_column name="amex_header_response_id" pk="amex_header_response_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=1092 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_header_detail" row_count="130" spec="" >
+			<column name="amex_header_detail_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="record_type" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="application_system_code" type="VARCHAR" length="2" jt="12" />
+			<column name="amex_appl_area" type="VARCHAR" length="100" jt="12" />
+			<column name="header_datetime" type="VARCHAR" length="19" jt="12" />
+			<column name="file_type_code" type="VARCHAR" length="2" jt="12" />
+			<column name="file_creation_date" type="VARCHAR" length="8" jt="12" />
+			<column name="file_sequence_number" type="VARCHAR" length="2" jt="12" />
+			<column name="said" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<column name="datatype" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="stars_creation_date" type="VARCHAR" length="7" jt="12" />
+			<column name="file_creation_time" type="VARCHAR" length="7" jt="12" />
+			<column name="stars_file_sequence_number" type="VARCHAR" length="3" jt="12" />
+			<column name="file_batch_id" type="VARCHAR" length="8" jt="12" />
+			<column name="client_area" type="VARCHAR" length="100" jt="12" />
+			<column name="file_type" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="new_field_2" type="INT" length="11" jt="4" />
+			<index name="pk_amex_header_detail" unique="PRIMARY_KEY" >
+				<column name="amex_header_detail_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_header_response" row_count="545" spec="" >
+			<column name="amex_header_response_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="record_type" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="file_batch_id" type="VARCHAR" length="8" jt="12" />
+			<column name="application_system_code" type="VARCHAR" length="3" jt="12" />
+			<column name="merchant_country_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="file_type_code" type="VARCHAR" length="2" jt="12" />
+			<column name="file_creation_date" type="VARCHAR" length="19" jt="12" />
+			<column name="file_sequence_number" type="VARCHAR" length="8" jt="12" />
+			<column name="said" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<column name="datatype" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="file_creation_time" type="VARCHAR" length="19" jt="12" />
+			<column name="client_area" type="VARCHAR" length="100" jt="12" />
+			<column name="response_file_name" type="VARCHAR" length="150" jt="12" mandatory="y" />
+			<column name="response_sent_timestamp" type="TIMESTAMP" length="6" jt="93" />
+			<column name="file_upload_ind" type="BOOLEAN" length="1" jt="16" mandatory="y" />
+			<column name="is_ack_received_ind" type="BOOLEAN" length="1" jt="16" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_header_response" unique="PRIMARY_KEY" >
+				<column name="amex_header_response_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=593 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_image_ack_detail" row_count="39" spec="" >
+			<column name="amex_image_ack_detail" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_detail_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="sequence_number" type="VARCHAR" length="7" jt="12" />
+			<column name="message_type" type="VARCHAR" length="20" jt="12" />
+			<column name="batch_id" type="VARCHAR" length="7" jt="12" />
+			<column name="card_brand_case_number" type="VARCHAR" length="11" jt="12" />
+			<column name="masked_account_number" type="VARCHAR" length="19" jt="12" />
+			<column name="global_token" type="VARCHAR" length="150" jt="12" />
+			<column name="merchant_token" type="VARCHAR" length="150" jt="12" />
+			<column name="document_category_code" type="VARCHAR" length="3" jt="12" />
+			<column name="document_received_date" type="VARCHAR" length="10" jt="12" />
+			<column name="document_source_code" type="VARCHAR" length="4" jt="12" />
+			<column name="country_code" type="VARCHAR" length="50" jt="12" />
+			<column name="se_number" type="VARCHAR" length="10" jt="12" />
+			<column name="document_type" type="VARCHAR" length="5" jt="12" />
+			<column name="app_format" type="VARCHAR" length="5" jt="12" />
+			<column name="page_count" type="TINYINT" length="4" jt="-6" />
+			<column name="image_file_name" type="VARCHAR" length="250" jt="12" mandatory="y" />
+			<column name="error_detail" type="VARCHAR" length="300" jt="12" />
+			<column name="pubsub_success_indicator" type="VARCHAR" length="1" jt="12" mandatory="y" >
+				<defo><![CDATA['N']]></defo>
+			</column>
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_image_ack_detail" unique="PRIMARY_KEY" >
+				<column name="amex_image_ack_detail" />
+			</index>
+			<index name="fk_amex_header_detail_id_amex_header_detail_10" unique="NORMAL" >
+				<column name="amex_header_detail_id" />
+			</index>
+			<fk name="fk_amex_header_detail_id_amex_header_detail_10" to_schema="dims" to_table="amex_header_detail" options="" >
+				<fk_column name="amex_header_detail_id" pk="amex_header_detail_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_image_data_response" row_count="0" spec="" >
+			<column name="amex_image_data_response_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_image_header_response_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="issuer_snt_rspns_document_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="sequence_number" type="VARCHAR" length="7" jt="12" mandatory="y" />
+			<column name="batch_id" type="VARCHAR" length="7" jt="12" mandatory="y" />
+			<column name="document_received_date" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="document_scan_date" type="VARCHAR" length="10" jt="12" />
+			<column name="document_category_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="document_source_code" type="VARCHAR" length="4" jt="12" mandatory="y" />
+			<column name="masked_account_number" type="VARCHAR" length="19" jt="12" mandatory="y" />
+			<column name="card_brand_case_number" type="VARCHAR" length="11" jt="12" mandatory="y" />
+			<column name="se_account_number" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="document_type" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="app_format" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="page_count" type="TINYINT" length="4" jt="-6" mandatory="y" />
+			<column name="image_file_name" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="image_file_size_in_mb" type="DECIMAL" length="5" decimal="2" jt="3" mandatory="y" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_image_data_response" unique="PRIMARY_KEY" >
+				<column name="amex_image_data_response_id" />
+			</index>
+			<index name="fk_ax_img_hdr_rsp_id_ax_img_hdr_rsp_01" unique="NORMAL" >
+				<column name="amex_image_header_response_id" />
+			</index>
+			<fk name="fk_ax_img_hdr_rsp_id_ax_img_hdr_rsp_01" to_schema="dims" to_table="amex_image_header_response" options="" >
+				<fk_column name="amex_image_header_response_id" pk="amex_image_header_response_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_image_header_response" row_count="0" spec="" >
+			<column name="amex_image_header_response_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="merchant_country_code" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="control_record_indentifier" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<column name="record_count" type="SMALLINT" length="6" jt="5" mandatory="y" />
+			<column name="continue_on_error" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="batch_id" type="VARCHAR" length="12" jt="12" mandatory="y" />
+			<column name="zip_file_name" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="index_file_name" type="VARCHAR" length="50" jt="12" />
+			<column name="file_directory_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="total_file_size_in_mb" type="DECIMAL" length="5" decimal="2" jt="3" mandatory="y" />
+			<column name="response_sent_timetstamp" type="TIMESTAMP" length="6" jt="93" />
+			<column name="file_upload_ind" type="BOOLEAN" length="1" jt="16" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_image_header_response" unique="PRIMARY_KEY" >
+				<column name="amex_image_header_response_id" />
+			</index>
+			<index name="fk_mrchnt_region_cd_rgn_mstr_11" unique="NORMAL" >
+				<column name="merchant_country_code" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_trailer_detail" row_count="109" spec="" >
+			<column name="amex_trailer_detail_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_detail_id" type="INT" length="11" jt="4" />
+			<column name="record_type" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="application_system_code" type="VARCHAR" length="2" jt="12" />
+			<column name="amex_trailer_detailcol" type="VARCHAR" length="45" jt="12" />
+			<column name="file_type_code" type="VARCHAR" length="2" jt="12" />
+			<column name="trailer_datetime" type="VARCHAR" length="19" jt="12" />
+			<column name="amex_appl_area" type="VARCHAR" length="100" jt="12" />
+			<column name="file_creation_date" type="VARCHAR" length="8" jt="12" />
+			<column name="file_sequence_number" type="VARCHAR" length="2" jt="12" />
+			<column name="amex_total_records" type="VARCHAR" length="9" jt="12" />
+			<column name="se_total_records" type="VARCHAR" length="9" jt="12" />
+			<column name="amex_job_number" type="VARCHAR" length="5" jt="12" />
+			<column name="said" type="VARCHAR" length="6" jt="12" />
+			<column name="datatype" type="VARCHAR" length="5" jt="12" />
+			<column name="stars_creation_date" type="VARCHAR" length="7" jt="12" />
+			<column name="file_creation_time" type="VARCHAR" length="7" jt="12" />
+			<column name="client_area" type="VARCHAR" length="100" jt="12" />
+			<column name="stars_file_sequence_number" type="VARCHAR" length="3" jt="12" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_trailer_detail" unique="PRIMARY_KEY" >
+				<column name="amex_trailer_detail_id" />
+			</index>
+			<index name="fk_amex_header_detail_id_amex_header_detail_03" unique="NORMAL" >
+				<column name="amex_header_detail_id" />
+			</index>
+			<fk name="fk_amex_header_detail_id_amex_header_detail_03" to_schema="dims" to_table="amex_header_detail" options="" >
+				<fk_column name="amex_header_detail_id" pk="amex_header_detail_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8]]></options>
+		</table>
+		<table name="amex_trailer_response" row_count="547" spec="" >
+			<column name="amex_trailer_response_id" type="INT" length="11" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="amex_header_response_id" type="INT" length="11" jt="4" />
+			<column name="record_type" type="VARCHAR" length="1" jt="12" mandatory="y" />
+			<column name="application_system_code" type="VARCHAR" length="2" jt="12" />
+			<column name="file_type_code" type="VARCHAR" length="2" jt="12" />
+			<column name="file_creation_date" type="VARCHAR" length="8" jt="12" />
+			<column name="file_creation_time" type="VARCHAR" length="7" jt="12" />
+			<column name="file_sequence_number" type="VARCHAR" length="3" jt="12" />
+			<column name="amex_total_records" type="VARCHAR" length="9" jt="12" mandatory="y" />
+			<column name="se_total_records" type="VARCHAR" length="9" jt="12" />
+			<column name="said" type="VARCHAR" length="6" jt="12" />
+			<column name="datatype" type="VARCHAR" length="5" jt="12" />
+			<column name="last_modified_by" type="VARCHAR" length="20" jt="12" />
+			<column name="last_modified_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<column name="created_by" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="created_timestamp" type="TIMESTAMP" length="6" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP(6)]]></defo>
+			</column>
+			<index name="pk_amex_trailer_response" unique="PRIMARY_KEY" >
+				<column name="amex_trailer_response_id" />
+			</index>
+			<index name="fk_amex_header_response_id_amex_header_response_02" unique="NORMAL" >
+				<column name="amex_header_response_id" />
+			</index>
+			<fk name="fk_amex_header_response_id_amex_header_response_02" to_schema="dims" to_table="amex_header_response" options="" >
+				<fk_column name="amex_header_response_id" pk="amex_header_response_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=592 DEFAULT CHARSET=utf8]]></options>
+		</table>
+	</schema>
+	<connector name="MySql-MDevNCDE1" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" url="jdbc:mysql://127.0.0.1:3001/dims" host="localhost" port="3306" user="ijajalib_write" passwd="NUhONTRBcUlMbUJhaTNBYQ==" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-19c9" show_column_type="y" show_relation="cascade" >
+		<entity schema="dims" name="acquirer_card_brand_mapping" color="BED3F4" x="656" y="1664" />
+		<entity schema="dims" name="acquirer_master" color="BED3F4" x="656" y="1920" />
+		<entity schema="dims" name="action_types" color="BED3F4" x="928" y="1664" />
+		<entity schema="dims" name="activated_stage_detail" color="BED3F4" x="1200" y="1664" />
+		<entity schema="dims" name="actual_field_name_master" color="BED3F4" x="928" y="1920" />
+		<entity schema="dims" name="amex_acknowledgement_detail" color="C7F4BE" x="336" y="224" />
+		<entity schema="dims" name="amex_data_file_detail" color="F4DDBE" x="1568" y="224" />
+		<entity schema="dims" name="amex_data_file_response" color="F4DDBE" x="1280" y="688" >
+			<column name="amex_data_file_response_id" />
+			<column name="amex_header_response_id" />
+			<column name="case_stage_id" />
+			<column name="issuer_sent_response_id" />
+			<column name="dtl_rec_type" />
+			<column name="fin_ind" />
+			<column name="seq_number" />
+			<column name="cm_num_global_token" />
+			<column name="case_number" />
+			<column name="refund_am" />
+			<column name="refund_curr_code" />
+		</entity>
+		<entity schema="dims" name="amex_header_detail" color="C7F4BE" x="48" y="224" />
+		<entity schema="dims" name="amex_header_response" color="F4DDBE" x="1296" y="224" />
+		<entity schema="dims" name="amex_image_ack_detail" color="C7F4BE" x="336" y="704" />
+		<entity schema="dims" name="amex_image_data_response" color="F4DDBE" x="656" y="688" />
+		<entity schema="dims" name="amex_image_header_response" color="F4DDBE" x="976" y="288" />
+		<entity schema="dims" name="amex_trailer_detail" color="C7F4BE" x="48" y="704" />
+		<entity schema="dims" name="amex_trailer_response" color="C7F4BE" x="48" y="1216" />
+		<callout x="48" y="80" pointer="Round" >
+			<comment><![CDATA[This is a layout. You can create multiple layouts with the same or different tables. 
+
+Edit tables by double-clicking the table headers.]]></comment>
+		</callout>
+		<group name="acquirer_card_brand_mapping" color="ECF0F7" >
+			<entity schema="dims" name="acquirer_card_brand_mapping" />
+			<entity schema="dims" name="action_types" />
+			<entity schema="dims" name="actual_field_name_master" />
+			<entity schema="dims" name="activated_stage_detail" />
+			<entity schema="dims" name="acquirer_master" />
+		</group>
+		<group name="amex_header_response" color="F7F2EC" >
+			<entity schema="dims" name="amex_header_response" />
+			<entity schema="dims" name="amex_data_file_detail" />
+			<entity schema="dims" name="amex_data_file_response" />
+			<entity schema="dims" name="amex_image_header_response" />
+			<entity schema="dims" name="amex_image_data_response" />
+		</group>
+		<group name="amex_header_detail" color="EEF7EC" >
+			<entity schema="dims" name="amex_header_detail" />
+			<entity schema="dims" name="amex_acknowledgement_detail" />
+			<entity schema="dims" name="amex_image_ack_detail" />
+			<entity schema="dims" name="amex_trailer_detail" />
+			<entity schema="dims" name="amex_trailer_response" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-1efd" show_column_type="y" show_relation="cascade" >
+		<entity schema="dims" name="acquirer_card_brand_mapping" color="BED3F4" x="784" y="1488" />
+		<entity schema="dims" name="acquirer_master" color="BED3F4" x="784" y="1744" />
+		<entity schema="dims" name="action_types" color="BED3F4" x="1136" y="1488" />
+		<entity schema="dims" name="activated_stage_detail" color="BED3F4" x="1488" y="1488" />
+		<entity schema="dims" name="actual_field_name_master" color="BED3F4" x="1136" y="1744" />
+		<entity schema="dims" name="amex_acknowledgement_detail" color="C7F4BE" x="400" y="48" />
+		<entity schema="dims" name="amex_data_file_detail" color="F4DDBE" x="1488" y="48" />
+		<entity schema="dims" name="amex_data_file_response" color="F4DDBE" x="1136" y="512" >
+			<column name="amex_data_file_response_id" />
+			<column name="amex_header_response_id" />
+			<column name="case_stage_id" />
+			<column name="issuer_sent_response_id" />
+			<column name="dtl_rec_type" />
+			<column name="fin_ind" />
+			<column name="seq_number" />
+			<column name="cm_num_global_token" />
+			<column name="case_number" />
+			<column name="refund_am" />
+			<column name="refund_curr_code" />
+		</entity>
+		<entity schema="dims" name="amex_header_detail" color="C7F4BE" x="48" y="48" />
+		<entity schema="dims" name="amex_header_response" color="F4DDBE" x="1136" y="48" />
+		<entity schema="dims" name="amex_image_ack_detail" color="C7F4BE" x="400" y="528" />
+		<entity schema="dims" name="amex_image_data_response" color="F4DDBE" x="1136" y="912" />
+		<entity schema="dims" name="amex_image_header_response" color="F4DDBE" x="784" y="512" />
+		<entity schema="dims" name="amex_trailer_detail" color="C7F4BE" x="48" y="528" />
+		<entity schema="dims" name="amex_trailer_response" color="C7F4BE" x="48" y="1040" />
+		<script name="SQL Editor" id="Editor-21cb" language="SQL" >
+			<string><![CDATA[SELECT
+	amex_header_detail_id, record_type, application_system_code, amex_appl_area, header_datetime, file_type_code, file_creation_date, 
+	file_sequence_number, said, datatype, stars_creation_date, file_creation_time, stars_file_sequence_number, file_batch_id, 
+	client_area, file_type, last_modified_by, last_modified_timestamp, created_by, created_timestamp, new_field_2
+FROM
+	dims.amex_header_detail l;]]></string>
+		</script>
+		<browser id="Browse-2213" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="dims" entity="amex_header_detail" x="-2147483648" y="-2147483648" width="-2147483648" height="-2147483648" >
+				<browse_table schema="dims" entity="amex_acknowledgement_detail" fk="fk_amex_header_detail_id_amex_header_detail_05" x="40" y="-2147483648" width="500" height="350" />
+			</browse_table>
+		</browser>
+		<query id="Query-1e68" name="Query Builder" >
+			<query_table schema="dims" name="amex_header_detail" alias="ahd" x="48" y="48" >
+				<column name="amex_header_detail_id" />
+				<column name="record_type" />
+				<column name="application_system_code" />
+				<column name="amex_appl_area" />
+				<column name="header_datetime" />
+				<column name="file_type_code" />
+				<column name="file_creation_date" />
+				<column name="file_sequence_number" />
+				<column name="said" />
+				<column name="datatype" />
+				<column name="stars_creation_date" />
+				<column name="file_creation_time" />
+				<column name="stars_file_sequence_number" />
+				<column name="file_batch_id" />
+				<column name="client_area" />
+				<column name="file_type" />
+				<column name="last_modified_by" />
+				<column name="last_modified_timestamp" />
+				<column name="created_by" />
+				<column name="created_timestamp" />
+				<column name="new_field_2" />
+				<query_table schema="dims" name="amex_acknowledgement_detail" alias="aad" x="336" y="48" fk="fk_amex_header_detail_id_amex_header_detail_05" type="Inner Join" >
+					<column name="amex_acknowledgement_id" />
+					<column name="amex_header_detail_id" />
+					<column name="card_brand_code" />
+					<column name="region_code" />
+					<column name="acquirer_code" />
+					<column name="file_name" />
+					<column name="dtl_ind" />
+					<column name="message_type" />
+					<column name="message_description" />
+					<column name="pubsub_success_indicator" />
+					<column name="last_modified_by" />
+					<column name="last_modified_timestamp" />
+					<column name="created_by" />
+					<column name="created_timestamp" />
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Report" id="Report-453" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Amex_header_detail Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="amex_header_detail_id" type="4" />
+						<var name="record_type" />
+						<var name="application_system_code" />
+						<var name="amex_appl_area" />
+						<var name="header_datetime" />
+						<var name="file_type_code" />
+						<var name="file_creation_date" />
+						<var name="file_sequence_number" />
+						<var name="said" />
+						<var name="datatype" />
+						<var name="stars_creation_date" />
+						<var name="file_creation_time" />
+						<var name="stars_file_sequence_number" />
+						<var name="file_batch_id" />
+						<var name="client_area" />
+						<var name="file_type" />
+						<var name="last_modified_by" />
+						<var name="last_modified_timestamp" type="93" />
+						<var name="created_by" />
+						<var name="created_timestamp" type="93" />
+						<var name="new_field_2" type="4" />
+						<script ><![CDATA[SELECT * FROM dims.amex_header_detail]]></script>
+					</form_script>
+					<param name="item" value="created_by" />
+					<param name="width" value="100%" />
+					<param name="title" value="Sample Chart" />
+					<param name="value" value="amex_header_detail_id" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="amex_header_detail_id" type="4" />
+						<var name="record_type" />
+						<var name="application_system_code" />
+						<var name="amex_appl_area" />
+						<var name="header_datetime" />
+						<var name="file_type_code" />
+						<var name="file_creation_date" />
+						<var name="file_sequence_number" />
+						<var name="said" />
+						<var name="datatype" />
+						<var name="stars_creation_date" />
+						<var name="file_creation_time" />
+						<var name="stars_file_sequence_number" />
+						<var name="file_batch_id" />
+						<var name="client_area" />
+						<var name="file_type" />
+						<var name="last_modified_by" />
+						<var name="last_modified_timestamp" type="93" />
+						<var name="created_by" />
+						<var name="created_timestamp" type="93" />
+						<var name="new_field_2" type="4" />
+						<script ><![CDATA[SELECT * FROM dims.amex_header_detail]]></script>
+					</form_script>
+					<cell type="label" name="amex_header_detail_id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="record_type" pos="1,0,1,0,c,c" />
+					<cell type="label" name="application_system_code" pos="2,0,2,0,c,c" />
+					<cell type="label" name="amex_appl_area" pos="3,0,3,0,c,c" />
+					<cell type="label" name="header_datetime" pos="4,0,4,0,c,c" />
+					<cell type="label" name="file_type_code" pos="5,0,5,0,c,c" />
+					<cell type="label" name="${amex_header_detail_id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${record_type}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${application_system_code}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${amex_appl_area}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${header_datetime}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${file_type_code}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="6,1,6,1,c,c" ref_id="Report-453" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-453" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-453" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-453" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
